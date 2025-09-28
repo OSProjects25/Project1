@@ -12,8 +12,7 @@ public class ProcessUtils {
         List<ProcessObj> pList = new ArrayList<>();
         InputStream inputStream = ProcessUtils.class.getClassLoader().getResourceAsStream(processList);
         if (inputStream == null) {
-            System.out.println("File not found: " + processList);
-            return pList;
+            throw new IllegalArgumentException("File not found: " + processList);
         }
         
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
@@ -31,7 +30,7 @@ public class ProcessUtils {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error reading process data: " + e.getMessage());
+            throw new RuntimeException("Error reading process data: " + e.getMessage());
         }
 
         return pList;
