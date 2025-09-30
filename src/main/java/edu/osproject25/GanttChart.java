@@ -3,7 +3,9 @@ package edu.osproject25;
 import java.util.List;
 
 public class GanttChart {
-
+    /**
+     * Prints a Gantt Chart of the execution order
+     */
     public static void print(List<CPUState> executionList) {
 
         StringBuilder pOrder = new StringBuilder("|");

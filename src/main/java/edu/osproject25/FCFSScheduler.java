@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FCFSScheduler {
-
+    /**
+     * Uses First Come First Serve to schedule a list of process objects
+     */
     public static void schedule(List<ProcessObj> p) {
         List<ProcessObj> processes = ProcessSort.byArrivalTime(p);
         List<CPUState> executionList = new ArrayList<>();
