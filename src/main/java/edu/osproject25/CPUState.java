@@ -2,23 +2,24 @@ package edu.osproject25;
 
 public class CPUState {
     private String pName;
-    private int executionTime;
+    private int startTime;
+    private int completionTime;
 
-    public CPUState(String pName, int executionTime) {
+    public CPUState(String pName, int startTime, int completionTime) {
         this.pName = pName;
-        this.executionTime = executionTime;
+        this.startTime = startTime;
+        this.completionTime = completionTime;
     }
 
     public String getPName() {
         return pName;
     }
 
-    public int getExecutionTime() {
-        return executionTime;
+    public int getStartTime() {
+        return startTime;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Process name: %s, Time: %d", pName, executionTime);
+    public int getcompletionTime() {
+        return completionTime;
     }
 }
