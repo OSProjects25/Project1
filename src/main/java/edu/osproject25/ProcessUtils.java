@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProcessUtils {
-
+    /**
+     * Returns a list of process objects from a text file
+     * @return List of process objects
+     */
     public static List<ProcessObj> ReadProcessInfo(String processList) {
         List<ProcessObj> pList = new ArrayList<>();
         InputStream inputStream = ProcessUtils.class.getClassLoader().getResourceAsStream(processList);
