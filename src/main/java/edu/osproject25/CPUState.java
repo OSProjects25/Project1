@@ -19,7 +19,7 @@ public class CPUState {
         return startTime;
     }
 
-    public int getcompletionTime() {
+    public int getCompletionTime() {
         return completionTime;
     }
 }

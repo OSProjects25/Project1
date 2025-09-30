@@ -7,6 +7,6 @@ public class Main {
         System.out.println("Starting the project");
         String processes = "processes.txt";
         List<ProcessObj> processData = ProcessUtils.ReadProcessInfo(processes);
-        System.out.println(processData);
+        FCFSScheduler.schedule(processData);
     }
 }

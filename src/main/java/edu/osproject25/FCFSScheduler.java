@@ -14,9 +14,12 @@ public class FCFSScheduler {
             String pName = String.format("P%s", process.getPid());
             int startTime = Math.max(currentTime, process.getArrivalTime());
             int completionTime = startTime + process.getBurstTime();
+            currentTime = completionTime;
 
             CPUState state = new CPUState(pName, startTime, completionTime);
             executionList.add(state);
         }
+
+        GanttChart.print(executionList);
     }
 }
