@@ -20,8 +20,13 @@ public class FCFSScheduler {
 
             CPUState state = new CPUState(pName, startTime, completionTime);
             executionList.add(state);
-        }
 
+            process.setCompletionTime(completionTime);
+            process.setTurnaroundTime(completionTime - process.getArrivalTime());
+            process.setWaitingTime(process.getTurnaroundTime() - process.getBurstTime());
+        }
+        
         GanttChart.print(executionList);
+        Metrics.print(processes);
     }
 }
