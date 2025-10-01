@@ -9,11 +9,13 @@ public class Metrics {
         int n = processes.size();
 
         for (ProcessObj process : processes) {
+            System.out.printf("Process P%d: Waiting Time(WT) = %d, Turnaround Time(TAT) = %d%n",
+                    process.getPid(), process.getWaitingTime(), process.getTurnaroundTime());
             totalWaitingTime += process.getWaitingTime();
             totalTurnaroundTime += process.getTurnaroundTime();
         }
 
-        System.out.printf("Average Waiting Time: %.2f\n", totalWaitingTime / n);
-        System.out.printf("Average Turnaround Time: %.2f\n", totalTurnaroundTime / n);
+        System.out.printf("Average Waiting Time: %.2f%n", totalWaitingTime / n);
+        System.out.printf("Average Turnaround Time: %.2f%n", totalTurnaroundTime / n);
     }
 }
