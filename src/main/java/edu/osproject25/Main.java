@@ -9,13 +9,10 @@ public class Main {
         String processes = "processes.txt";
         List<ProcessObj> processData = ProcessUtils.ReadProcessInfo(processes);
 
-        if (args.length > 0 && args[0].equalsIgnoreCase("rr")) {
-            int q = (args.length > 1) ? Integer.parseInt(args[1]) : 2;
-            System.out.println("Running Round Robin, quantum=" + q);
-            RRScheduler.schedule(processData, q);   // RR prints its own Gantt + metrics
-        } else {
-            System.out.println("Running FCFS");
-            FCFSScheduler.schedule(processData);    // FCFS prints its own Gantt + metrics
-        }
+        System.out.println("First Come First Serve Scheduling:");
+        FCFSScheduler.schedule(processData);
+
+        System.out.println("Round Robin Scheduling:");
+        RRScheduler.schedule(processData, 2);
     }
 }
