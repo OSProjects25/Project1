@@ -12,10 +12,10 @@ public class Main {
         if (args.length > 0 && args[0].equalsIgnoreCase("rr")) {
             int q = (args.length > 1) ? Integer.parseInt(args[1]) : 2;
             System.out.println("Running Round Robin, quantum=" + q);
-            RRScheduler.schedule(processData, q);   // prints internally
+            RRScheduler.schedule(processData, q);   // RR prints its own Gantt + metrics
         } else {
             System.out.println("Running FCFS");
-            FCFSScheduler.schedule(processData);    // prints internally
+            FCFSScheduler.schedule(processData);    // FCFS prints its own Gantt + metrics
         }
     }
 }
