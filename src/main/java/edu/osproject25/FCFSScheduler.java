@@ -3,9 +3,17 @@ package edu.osproject25;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * First-Come, First-Served (FCFS) scheduler implementation.
+ * Produces a single non-preemptive slice per process in arrival order.
+ */
 public class FCFSScheduler {
     /**
-     * Uses First Come First Serve to schedule a list of process objects
+     * Schedules processes using FCFS and prints a Gantt chart and metrics.
+     * This method computes start/completion times, turnaround and waiting times,
+     * and then delegates printing to {@link GanttChart} and {@link Metrics}.
+     *
+     * @param p unsorted list of processes to schedule
      */
     public static void schedule(List<ProcessObj> p) {
         List<ProcessObj> processes = ProcessSort.byArrivalTime(p);
