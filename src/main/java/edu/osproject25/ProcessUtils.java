@@ -8,8 +8,9 @@ import java.util.List;
 
 public class ProcessUtils {
     /**
-     * Returns a list of process objects from a text file
-     * @return List of process objects
+     * Loads processes from a whitespace-delimited text file on the classpath.
+     * The file is expected to contain a header line, followed by rows with four integers:
+     * {@code pid arrival burst priority}. The header is skipped.
      */
     public static List<ProcessObj> ReadProcessInfo(String processList) {
         List<ProcessObj> pList = new ArrayList<>();

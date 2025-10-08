@@ -5,6 +5,9 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
+    /**
+     * Launches the simulator. Accepts no special arguments; interaction occurs via stdin.
+     */
     public static void main(String[] args) {
         System.out.println("Starting the project");
 
@@ -14,6 +17,8 @@ public class Main {
 
         // Simple CLI prompt
         Scanner sc = new Scanner(System.in);
+        System.out.println("========== CPU Scheduling Simulator ==========");
+        System.out.println("Loaded " + processData.size() + " processes from " + processes);
         System.out.println("\nChoose a scheduling algorithm:");
         System.out.println("  1) FCFS (FIFO)");
         System.out.println("  2) Round Robin (RR)");

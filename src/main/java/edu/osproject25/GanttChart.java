@@ -4,7 +4,11 @@ import java.util.List;
 
 public class GanttChart {
     /**
-     * Prints a Gantt Chart of the execution order
+     * Prints a Gantt chart for the provided execution timeline.
+     * The first line shows process segments (e.g., {@code | P1 | P2 | IDLE |}),
+     * and the second line shows aligned timestamps for segment boundaries.
+     *
+     * @param executionList ordered list of execution slices to render
      */
     public static void print(List<CPUState> executionList) {
 

@@ -1,32 +1,51 @@
 # Project 1 - CPU Scheduling Simulator
 
 ## Overview
-This Maven-based Java project simulates a first-come, first-served (FCFS) CPU scheduler. The current implementation reads a list of processes from `src/main/resources/processes.txt`, orders them by arrival time, computes execution windows, and prints a simple Gantt chart to the console.
+Maven-based Java project simulating CPU scheduling algorithms with a simple CLI. It loads processes from `src/main/resources/processes.txt`, executes a selected algorithm, and prints a Gantt chart and basic metrics.
+
+Currently implemented:
+- FCFS (First-Come, First-Served)
+- RR (Round Robin, user-provided time quantum)
 
 ## Implemented Functionality
-- Process ingestion via `ProcessUtils.ReadProcessInfo`, which loads `processes.txt` from the classpath and converts each row into a `ProcessObj`.
-- Lightweight `ProcessObj` model describing PID, arrival time, burst time, and priority for each process.
-- Deterministic sorting helper (`ProcessSort.byArrivalTime`) to guarantee FCFS order.
-- FCFS scheduling in `FCFSScheduler.schedule`, which walks the sorted list, tracks CPU time, accounts for idle gaps, and creates `CPUState` records for the timeline.
-- Text-mode Gantt chart (`GanttChart.print`) that renders the execution order and timestamps, inserting `IDLE` segments whenever the CPU is waiting for the next arrival.
-- `Main` entry point that wires everything together and kicks off the simulation.
+- Process ingestion via `ProcessUtils.ReadProcessInfo` (classpath resource → `ProcessObj` list).
+- `ProcessObj` model with PID, arrival, burst, priority, plus computed metrics.
+- Sorting helper `ProcessSort.byArrivalTime`.
+- FCFS in `FCFSScheduler.schedule` (non-preemptive).
+- Round Robin in `RRScheduler.schedule` (preemptive with quantum, handles idle gaps).
+- Text-mode Gantt chart via `GanttChart.print` (inserts `IDLE` when appropriate).
+- Metrics via `Metrics.print` (per-process WT/TAT and averages).
+- `Main` CLI to select the algorithm and (for RR) prompt for quantum.
 
 ## Input Data
-The simulator expects a whitespace-delimited file with four columns: PID, arrival time, burst time, and priority. The included sample lives at `src/main/resources/processes.txt`; feel free to add or edit rows to model different workloads. The parser ignores the header row and assumes all remaining lines are well-formed integers.
+The simulator expects a whitespace-delimited file with four columns: `PID ARRIVAL BURST PRIORITY`. The included sample is at `src/main/resources/processes.txt`. The first line is treated as a header; subsequent lines should contain integers.
 
 ## Building and Running
-1. Compile the project (`maven` or `javac`). Examples:
+1. Compile the project:
    - `mvn clean compile`
-   - `javac -d target/classes src/main/java/edu/osproject25/*.java`
-2. Launch the simulator (resources are on the runtime classpath once compiled):
+   - or `javac -d target/classes src/main/java/edu/osproject25/*.java`
+2. Run the CLI (after compiling):
    - `java -cp target/classes edu.osproject25.Main`
 
-You should see output similar to the following for the bundled dataset:
+You will be prompted to choose an algorithm:
+- Enter `1` for FCFS
+- Enter `2` for Round Robin (you can then provide a positive integer quantum)
+
+Example output shape:
 ```
-Starting the project
-| P1 | P2 | P3 |
-0    5    8   10
+========== CPU Scheduling Simulator ==========
+Loaded N processes from processes.txt
+
+| P1 | P2 | IDLE| P3 |
+0    5     9    10   14
+
+Process P1: WT = 0, TAT = 5
+Process P2: WT = 2, TAT = 7
+...
+Average Waiting Time: 3.25
+Average Turnaround Time: 8.50
 ```
 
-## Next Steps
-Planned enhancements include implementing additional scheduling algorithms, calculating turnaround/waiting times, and persisting results for analysis. Update this README as new features land.
+## Notes
+- All times share the same unit (e.g., milliseconds, ticks). Choose any consistent unit for input.
+- For RR, the quantum must be a positive integer.

@@ -3,6 +3,12 @@ package edu.osproject25;
 import java.util.List;
 
 public class Metrics {
+    /**
+     * Prints per-process metrics and the averages to stdout.
+     * Assumes that completion, waiting, and turnaround times are already populated.
+     *
+     * @param processes processes with computed metrics
+     */
     public static void print(List<ProcessObj> processes) {
         double totalWaitingTime = 0;
         double totalTurnaroundTime = 0;

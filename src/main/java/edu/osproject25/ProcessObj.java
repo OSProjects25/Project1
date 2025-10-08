@@ -1,5 +1,10 @@
 package edu.osproject25;
 
+/**
+ * Model representing a process in the scheduling simulation.
+ * Includes identifiers, input parameters (arrival, burst, priority), and computed fields
+ * (waiting, turnaround, completion times).
+ */
 public class ProcessObj {
     private int pid;
     private int arrivalTime;

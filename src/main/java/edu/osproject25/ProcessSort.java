@@ -7,8 +7,11 @@ import java.util.List;
 public class ProcessSort {
 
     /**
-     * This function sorts a list of process objects `p` by their arrival time and returns a sorted list
-     **/
+     * Returns a new list sorted by ascending arrival time.
+     *
+     * @param p input processes (not modified)
+     * @return new list sorted by {@link ProcessObj#getArrivalTime()}
+     */
     public static List<ProcessObj> byArrivalTime(List<ProcessObj> p){
         List<ProcessObj> sorted = new ArrayList<>(p);
         sorted.sort(Comparator.comparing(ProcessObj::getArrivalTime));
